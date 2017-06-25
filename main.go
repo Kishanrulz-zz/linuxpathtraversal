@@ -1,14 +1,14 @@
 package main
 
 import (
-	"os"
-	"fmt"
 	"bufio"
-	"strings"
+	"fmt"
 	"io/ioutil"
+	"os"
+	"strings"
 )
 
-const root  = "/"
+const root = "/"
 
 //init initializes program from root directory
 func init() {
@@ -25,7 +25,7 @@ func main() {
 		command := make([]string, 2)
 		text, _ := reader.ReadString('\n')
 
-		if strings.Contains(text," ") {
+		if strings.Contains(text, " ") {
 			command = strings.Split(text, " ")
 		} else {
 			command[0] = text
@@ -35,13 +35,13 @@ func main() {
 		action := strings.Trim(command[1], "\n")
 
 		switch cmd {
-		case "pwd" :
+		case "pwd":
 			dir := pwd()
 			fmt.Println(dir)
 
 		case "mkdir":
 			dir := pwd()
-			dirExists, err := exists(fmt.Sprintf(dir+ "/" +action) )
+			dirExists, err := exists(fmt.Sprintf(dir + "/" + action))
 			if err != nil {
 				fmt.Println(err)
 			}
@@ -106,8 +106,11 @@ func pwd() string {
 //exists returns true if the directory exists else false
 func exists(path string) (bool, error) {
 	_, err := os.Stat(path)
-	if err == nil { return true, nil }
-	if os.IsNotExist(err) { return false, nil }
+	if err == nil {
+		return true, nil
+	}
+	if os.IsNotExist(err) {
+		return false, nil
+	}
 	return true, err
 }
-
