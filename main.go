@@ -90,7 +90,10 @@ func main() {
 		case "clear":
 			_ = os.Chdir(root)
 			fmt.Println(pwd())
+		default:
+			fmt.Println("Sorry, cannot recognize input")
 		}
+
 	}
 }
 
